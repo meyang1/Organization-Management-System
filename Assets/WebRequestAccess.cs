@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class WebRequestAccess : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class WebRequestAccess : MonoBehaviour
     public Text password;
     public Text pageInfo;
     private string pageText;
+
+    public TextMeshProUGUI usernameText;
+    public TextMeshProUGUI passwordText;
+    public TextMeshProUGUI pageInfoText;
     void Start()
     {
     }
@@ -22,15 +27,16 @@ public class WebRequestAccess : MonoBehaviour
         StartCoroutine(GetText());
     }
 
-    IEnumerator Upload()
+    IEnumerator Upload()    
     {
         WWWForm form = new WWWForm();
-        form.AddField("username", username.text);
-        form.AddField("password", password.text);
+        form.AddField("username", usernameText.text);
+        form.AddField("password", passwordText.text);
         form.AddField("login", "12");
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/login.php", form))
         {
+            www.SetRequestHeader("Access-Control-Allow-Origin", "*");
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
@@ -40,7 +46,7 @@ public class WebRequestAccess : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
-                Debug.Log(username.text + password.text);
+                Debug.Log(usernameText.text + passwordText.text); 
             }
         }
     }
@@ -50,18 +56,19 @@ public class WebRequestAccess : MonoBehaviour
     IEnumerator GetText()
     {
         UnityWebRequest www = UnityWebRequest.Get("http://www.max.redhawks.us/indexUN.php");
+        www.SetRequestHeader("Access-Control-Allow-Origin", "*");
         yield return www.SendWebRequest();
 
 
         // Show results as text
         Debug.Log(www.downloadHandler.text);
-        pageText = www.downloadHandler.text;
+        pageInfoText.text = www.downloadHandler.text;
         Debug.Log("Number of Rows: " + pageText.IndexOf("numberRows:"));
 
 
-        Debug.Log("Text Length: " + pageText.Length);
+        /*Debug.Log("Text Length: " + pageText.Length);
         numberRows = int.Parse(pageText.Substring(pageText.IndexOf("numberRows:") + 11, pageText.Length - 4));
-        Debug.Log(pageText);
+        Debug.Log(pageText);*/
 
 
 
