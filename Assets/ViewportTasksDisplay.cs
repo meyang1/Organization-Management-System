@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class ViewportTasksDisplay : MonoBehaviour
 {
+    public GameObject EntryWithDescriptionPrefab; //height = 60
+    public GameObject EntryNoDescriptionPrefab; //height = 80
+
+    public double currentHeight = 300;
+    public GameObject allEntries; // increase Y value with currentHeight
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    float currentMoveAmount = 0f;
+    public void CreateNewEntry(int type)
     {
-        
+        if(type == 1){
+            // Entry with description
+            var entryObject = (Object)Instantiate(EntryWithDescriptionPrefab, Vector3.zero, Quaternion.identity);
+            currentMoveAmount = 60f;
+        }
+        if(type == 2){
+            // Entry without description
+            var entryObject = (Object)Instantiate(EntryNoDescriptionPrefab, Vector3.zero, Quaternion.identity);
+            currentMoveAmount = 80f;
+            entryObject.name = "new entry";
+        }
+        LeanTween.moveY(entryobject, currentMoveAmount, 0.75f).setEaseOutCubic();
     }
+
+
 }
