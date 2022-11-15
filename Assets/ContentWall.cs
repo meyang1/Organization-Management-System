@@ -48,6 +48,11 @@ public class ContentWall : MonoBehaviour
             StartCoroutine(GetText(3));
 
         }
+        if(type == 0)
+        {
+            contentTitle.text = "All";
+            StartCoroutine(GetText(0));
+        }
         anim.SetInteger("animState", 1);
     }
     public void backType()
