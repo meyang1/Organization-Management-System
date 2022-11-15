@@ -31,7 +31,9 @@ public class ViewportTasksDisplay : MonoBehaviour
         rT = allEntries.GetComponent<RectTransform>();
         rT.sizeDelta = new Vector2(rT.sizeDelta.x,rT.sizeDelta.y + currentMoveAmount);
     
-        allEntries.transform.localscale.y = currentMoveAmount;
+        //allEntries.transform.localscale.y = currentMoveAmount;
+        
+        //move EntryObject down by currentMoveAmount
         LeanTween.moveY(entryobject, 0f-currentMoveAmount, 0.75f).setEaseOutCubic();
     }
 
