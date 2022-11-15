@@ -15,13 +15,13 @@ public class ViewportTasksDisplay : MonoBehaviour
     {
         if(type == 1){
             // Entry with description
-            var entryObject = (Object)Instantiate(EntryWithDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform);
+            var entryObject = (Object)Instantiate(EntryWithDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform, worldPositionStays:false);
             currentMoveAmount = 60f;
             entryObject.name = "New Entry WIth Descrition";
         }
         if(type == 2){
             // Entry without description
-            var entryObject = (Object)Instantiate(EntryNoDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform);
+            var entryObject = (Object)Instantiate(EntryNoDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform, worldPositionStays:false);
             currentMoveAmount = 80f;
             entryObject.name = "New Entry no Description";
         }
