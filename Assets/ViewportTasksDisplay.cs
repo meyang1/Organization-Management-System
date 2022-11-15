@@ -26,7 +26,10 @@ public class ViewportTasksDisplay : MonoBehaviour
             entryObject.name = "New Entry no Description";
         }
         currentHeight += currentMoveAmount;
-        //allEntries.GetComponent<RectTransform>();
+        
+        //change Y height by amount
+        rT = allEntries.GetComponent<RectTransform>();
+        rT.sizeDelta = new Vector2(rT.sizeDelta.x,rT.sizeDelta.y + currentMoveAmount);
     
         allEntries.transform.localscale.y = currentMoveAmount;
         LeanTween.moveY(entryobject, 0f-currentMoveAmount, 0.75f).setEaseOutCubic();
