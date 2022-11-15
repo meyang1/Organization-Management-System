@@ -10,27 +10,26 @@ public class ViewportTasksDisplay : MonoBehaviour
     public double currentHeight = 300;
     public GameObject allEntries; // increase Y value with currentHeight
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     float currentMoveAmount = 0f;
     public void CreateNewEntry(int type)
     {
         if(type == 1){
             // Entry with description
-            var entryObject = (Object)Instantiate(EntryWithDescriptionPrefab, Vector3.zero, Quaternion.identity);
+            var entryObject = (Object)Instantiate(EntryWithDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform);
             currentMoveAmount = 60f;
+            entryObject.name = "New Entry WIth Descrition";
         }
         if(type == 2){
             // Entry without description
-            var entryObject = (Object)Instantiate(EntryNoDescriptionPrefab, Vector3.zero, Quaternion.identity);
+            var entryObject = (Object)Instantiate(EntryNoDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform);
             currentMoveAmount = 80f;
-            entryObject.name = "new entry";
+            entryObject.name = "New Entry no Description";
         }
-        LeanTween.moveY(entryobject, currentMoveAmount, 0.75f).setEaseOutCubic();
+        currentHeight += currentMoveAmount;
+        //allEntries.GetComponent<RectTransform>();
+    
+        allEntries.transform.localscale.y = currentMoveAmount;
+        LeanTween.moveY(entryobject, 0f-currentMoveAmount, 0.75f).setEaseOutCubic();
     }
 
 
