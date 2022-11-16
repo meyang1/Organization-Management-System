@@ -1,41 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class ViewportTasksDisplay : MonoBehaviour
 {
-    public GameObject EntryWithDescriptionPrefab; //height = 60
-    public GameObject EntryNoDescriptionPrefab; //height = 80
+    [SerializeField] private Transform m_ContentContainer;
+    [SerializeField] private GameObject m_ItemPrefab;
+    [SerializeField] private int m_ItemsToGenerate;
 
-    public double currentHeight = 300;
-    public GameObject allEntries; // increase Y value with currentHeight
 
-    float currentMoveAmount = 0f;
-    public void CreateNewEntry(int type)
+    void Start()
     {
-        if(type == 1){
-            // Entry with description
-            var entryObject = (Object)Instantiate(EntryWithDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform, worldPositionStays:false);
-            currentMoveAmount = 60f;
-            entryObject.name = "New Entry WIth Descrition";
-        }
-        if(type == 2){
-            // Entry without description
-            var entryObject = (Object)Instantiate(EntryNoDescriptionPrefab, Vector3.zero, Quaternion.identity, allEntries.transform, worldPositionStays:false);
-            currentMoveAmount = 80f;
-            entryObject.name = "New Entry no Description";
-        }
-        currentHeight += currentMoveAmount;
-        
-        //change Y height by amount
-        rT = allEntries.GetComponent<RectTransform>();
-        rT.sizeDelta = new Vector2(rT.sizeDelta.x,rT.sizeDelta.y + currentMoveAmount);
-    
-        //allEntries.transform.localscale.y = currentMoveAmount;
-        
-        //move EntryObject down by currentMoveAmount
-        LeanTween.moveY(entryobject, 0f-currentMoveAmount, 0.75f).setEaseOutCubic();
+
     }
-
-
+    public void Generate()
+    {
+        for (int i = 0; i < m_ItemsToGenerate; i++)
+        {
+            var item_go = Instantiate(m_ItemPrefab);
+            // do something with the instantiated item -- for instance
+            item_go.GetComponentInChildren<TextMeshProUGUI>().text = "Item #" + i;
+            //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
+            //parent the item to the content container
+            item_go.transform.SetParent(m_ContentContainer);
+            //reset the item's scale -- this can get munged with UI prefabs
+            item_go.transform.localScale = Vector2.one;
+        }
+    }
 }

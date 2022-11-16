@@ -7,17 +7,17 @@ public class EntryScriptableObject : ScriptableObject
     
     // all entries
     public string entryTitle;
-    public string entryDescription
+    public string entryDescription;
     public int entryType; // 1, 2, 3 (task, calendar, notes)
     
     // task (priority level, completion, deadline)
     public int priorityLevel;
     public int completionStatus;
-    public DateTime deadline;
+    public string deadline;
     
     // calendar (start, end, repeat)
-    public DateTime start;
-    public DateTime end;
+    public string start;
+    public string end;
     public int repeatStatus; 
     
 }
