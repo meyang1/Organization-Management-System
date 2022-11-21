@@ -20,9 +20,9 @@ public class ViewportTasksDisplay : MonoBehaviour
     {
         for (int i = 0; i < m_ItemsToGenerate; i++)
         {
-            var item_go = Instantiate(m_ItemPrefab);
+            var item_go = Instantiate(m_ItemPrefab, m_ContentContainer);
             // do something with the instantiated item -- for instance
-            item_go.GetComponentInChildren<TextMeshProUGUI>().text = "Item #" + i;
+            item_go.GetComponentInChildren<TextMeshPro>().text = "Item #" + i;
             //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
             //parent the item to the content container
             item_go.transform.SetParent(m_ContentContainer);
