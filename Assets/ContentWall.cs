@@ -32,26 +32,26 @@ public class ContentWall : MonoBehaviour
         {
             //tasks
             contentTitle.text = "Tasks";
-            StartCoroutine(GetText(1));
+            //StartCoroutine(GetText(1));
 
         }
         if(type == 2)
         {
             //calendar
             contentTitle.text = "Calendar";
-            StartCoroutine(GetText(2));
+            //StartCoroutine(GetText(2));
         }
         if(type == 3)
         {
             //notes
             contentTitle.text = "Notes";
-            StartCoroutine(GetText(3));
+            //StartCoroutine(GetText(3));
 
         }
         if(type == 0)
         {
             contentTitle.text = "All";
-            StartCoroutine(GetText(0));
+            //StartCoroutine(GetText(0));
         }
         anim.SetInteger("animState", 1);
     }
@@ -94,7 +94,7 @@ public class ContentWall : MonoBehaviour
                 contents.text = www.downloadHandler.text;
             }
         }
-        StartCoroutine(GetText(currentType));
+        //StartCoroutine(GetText(currentType));
     }
     IEnumerator GetText(int selectType)
     {
