@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class EntryData : MonoBehaviour
 {
     public string entryID;
-    public float timeVar=.75f;
-    public float amountTravel=4f;
+    public float timeVar=.6f;
+    public float amountTravel=3f;
     public GameObject verticalLayoutObj;
     // Start is called before the first frame update
     void Start()
