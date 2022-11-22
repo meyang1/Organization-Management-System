@@ -6,17 +6,19 @@ using UnityEngine.UI;
 public class EntryData : MonoBehaviour
 {
     public string entryID;
-    public float timeVar;
+    public float timeVar=.75f;
+    public float amountTravel=4f;
     public GameObject verticalLayoutObj;
     // Start is called before the first frame update
     void Start()
     {
-        timeVar = .75f;
+        //timeVar = .75f;
+        //amountTravel = 4f;
         verticalLayoutObj = GameObject.Find("ContentWallVerticalLayoutGroup");
     }
     public void clearTask()
     {
-        LeanTween.moveX(gameObject, transform.position.x + 4f, timeVar).setEaseOutCirc();
+        LeanTween.moveX(gameObject, transform.position.x + amountTravel, timeVar).setEaseOutCirc();
         StartCoroutine(setOff(timeVar));
     }
 
