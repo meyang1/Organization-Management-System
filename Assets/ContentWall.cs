@@ -18,6 +18,8 @@ public class ContentWall : MonoBehaviour
     public TextMeshProUGUI addTitle;
     public TextMeshProUGUI addDescription;
 
+    public ViewportTasksDisplay viewport;
+
     public WebRequest webRequest;
     // Start is called before the first frame update
     void Start()
@@ -28,30 +30,31 @@ public class ContentWall : MonoBehaviour
     public void changeType(int type)
     {
         currentType = type;
-        if(type == 1)
+        NotificationBox.SetActive(false);
+        if (type == 1)
         {
             //tasks
             contentTitle.text = "Tasks";
-            //StartCoroutine(GetText(1));
+            //viewport.Generate(1); 
 
         }
         if(type == 2)
         {
             //calendar
             contentTitle.text = "Calendar";
-            //StartCoroutine(GetText(2));
+            //viewport.Generate(2); 
         }
         if(type == 3)
         {
             //notes
             contentTitle.text = "Notes";
-            //StartCoroutine(GetText(3));
+            //viewport.Generate(3); 
 
         }
         if(type == 0)
         {
             contentTitle.text = "All";
-            //StartCoroutine(GetText(0));
+            //viewport.Generate(0); 
         }
         anim.SetInteger("animState", 1);
     }
@@ -94,37 +97,7 @@ public class ContentWall : MonoBehaviour
                 //contents.text = www.downloadHandler.text;
             }
         }
-        //StartCoroutine(GetText(currentType));
-    }
-    IEnumerator GetText(int selectType)
-    {
-        NotificationBox.SetActive(false);
-        WWWForm form = new WWWForm();
-        form.AddField("user", webRequest.sessionUsername);
-        form.AddField("eventType", currentType);
-        using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/indexUN.php", form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
-                contents.text = www.downloadHandler.text;
-            }
-        }
-
-        //pageText = pageInfo.text;
-        /*Debug.Log("Number of Rows: " + pageText.IndexOf("numberRows:"));
-
-
-        Debug.Log("Text Length: " + pageText.Length);
-        numberRows = int.Parse(pageText.Substring((pageText.IndexOf("numberRows:") + 11), (pageText.Length - 4)));
-        Debug.Log(pageText);*/
-
+        viewport.Generate(currentType);
     }
 
 }

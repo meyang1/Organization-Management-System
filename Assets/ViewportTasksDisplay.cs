@@ -11,7 +11,9 @@ public class ViewportTasksDisplay : MonoBehaviour
     [SerializeField] private int m_ItemsToGenerate;
 
     public WebRequest webRequest;
-    public GameObject title_Prefab;
+    public GameObject titleTasks_Prefab;
+    public GameObject titleCalendar_Prefab;
+    public GameObject titleNotes_Prefab;
     string textEntries;
     void Start()
     {
@@ -60,7 +62,9 @@ public class ViewportTasksDisplay : MonoBehaviour
         string tempEntryName = "";
 
 
-        if (type == 1) { var title_go = Instantiate(title_Prefab, m_ContentContainer); }
+        if (type == 1) { var title_go = Instantiate(titleTasks_Prefab, m_ContentContainer); }
+        if (type == 2) { var title_go = Instantiate(titleCalendar_Prefab, m_ContentContainer); }
+        if (type == 3) { var title_go = Instantiate(titleNotes_Prefab, m_ContentContainer); }
 
         string tempEntryDescription = "";
         foreach (string entry in entries)
@@ -84,7 +88,8 @@ public class ViewportTasksDisplay : MonoBehaviour
                 var item_go = Instantiate(m_ItemPrefab, m_ContentContainer);
                 // for now, set title to orange and text to white (dark gray background)
                 string tempText = "<b>" + tempEntryName + "</b>\n<color=white>" + tempEntryDescription + "</color>";
-                item_go.GetComponentInChildren<Text>().text = tempText;
+                item_go.GetComponentInChildren<Text>().text = tempText; 
+                item_go.GetComponentInChildren<EntryData>().entryID = tempEntryID;
                 //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
 
                 item_go.transform.SetParent(m_ContentContainer);

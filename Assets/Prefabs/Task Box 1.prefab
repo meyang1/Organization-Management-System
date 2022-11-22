@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 7715031267342623525}
   - component: {fileID: 4059199945901936666}
   - component: {fileID: 8010028613052737007}
+  - component: {fileID: 7277768645748335781}
   m_Layer: 5
   m_Name: Task Box 1
   m_TagString: Untagged
@@ -351,8 +352,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 72e2a3173107bd64da2dccadb600dc74, type: 3}
-    m_FontSize: 10
+    m_Font: {fileID: 12800000, guid: f678045365362ca45b380af5c9222f2e, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -407,4 +408,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4059199945901936666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7277768645748335781}
+        m_TargetAssemblyTypeName: EntryData, Assembly-CSharp
+        m_MethodName: clearTask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7277768645748335781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363123685317947036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8843fed894edbdb4aa0268be085304f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryID: 
+  timeVar: 0
+  verticalLayoutObj: {fileID: 0}
