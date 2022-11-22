@@ -60,7 +60,7 @@ public class ViewportTasksDisplay : MonoBehaviour
         string tempEntryName = "";
 
 
-        var title_go = Instantiate(title_Prefab, m_ContentContainer);
+        if (type == 1) { var title_go = Instantiate(title_Prefab, m_ContentContainer); }
 
         string tempEntryDescription = "";
         foreach (string entry in entries)

@@ -136,8 +136,7 @@ public class WebRequest : MonoBehaviour
             {
                 Debug.Log("Form upload complete!");
                 Debug.Log(username.text + password.text);
-                // Show results as text
-                pageInfo.text = www.downloadHandler.text;
+                // Show results as text 
 
                 notificationPanel.SetActive(true);
             }
@@ -187,8 +186,7 @@ public class WebRequest : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
-                Debug.Log(addEventName.text + ": "+ addEventDescription.text);
-                pageInfo.text = www.downloadHandler.text;
+                Debug.Log(addEventName.text + ": "+ addEventDescription.text); 
                 notificationPanel.SetActive(true);
             }
         }

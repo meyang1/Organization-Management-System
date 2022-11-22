@@ -57,7 +57,7 @@ public class ContentWall : MonoBehaviour
     }
     public void backType()
     {
-        contentTitle.text = "";
+        contentTitle.text = "";  
         anim.SetInteger("animState", 0);
     }
 
@@ -91,7 +91,7 @@ public class ContentWall : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
-                contents.text = www.downloadHandler.text;
+                //contents.text = www.downloadHandler.text;
             }
         }
         //StartCoroutine(GetText(currentType));
