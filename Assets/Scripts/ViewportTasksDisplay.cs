@@ -88,6 +88,10 @@ public class ViewportTasksDisplay : MonoBehaviour
                 var item_go = Instantiate(m_ItemPrefab, m_ContentContainer);
                 // for now, set title to orange and text to white (dark gray background)
                 string tempText = "<b>" + tempEntryName + "</b>\n<color=white>" + tempEntryDescription + "</color>";
+                if (tempEntryDescription == "")
+                {
+                    tempText = "<b>" + tempEntryName + "</b>";
+                }
                 item_go.GetComponentInChildren<Text>().text = tempText; 
                 item_go.GetComponentInChildren<EntryData>().entryID = tempEntryID;
                 //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;

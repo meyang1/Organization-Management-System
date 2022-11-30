@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 8010028613052737007}
   - component: {fileID: 7277768645748335781}
   m_Layer: 5
-  m_Name: Task Box 1
+  m_Name: Task Box NO Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,6 +434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entryID: 
-  timeVar: 0.5
+  timeVar: 0
   amountTravel: 3
   verticalLayoutObj: {fileID: 0}

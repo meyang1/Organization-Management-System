@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.UI;
@@ -71,8 +71,10 @@ public class ContentWall : MonoBehaviour
 
     public void addEntry()
     {
-        StartCoroutine(AddText());
-        
+        if (!addTitle.text.Equals("​"))
+        {
+            StartCoroutine(AddText());
+        }
     }
 
     IEnumerator AddText()
@@ -82,6 +84,7 @@ public class ContentWall : MonoBehaviour
         form.AddField("eventName", addTitle.text);
         form.AddField("eventDescription", addDescription.text);
         form.AddField("eventType", currentType);
+         
         Debug.Log(webRequest.sessionUsername + addTitle.text +addDescription.text + currentType);
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/addEntryUN.php", form))
         {

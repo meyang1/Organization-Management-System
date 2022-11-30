@@ -103,7 +103,7 @@ public class WebRequest : MonoBehaviour
                     ActualMenuLight.SetActive(false);
                     MoveMidCube(9.41f);
 
-                    OpenMenu.SetActive(true);
+                    //OpenMenu.SetActive(true);
                     Cam3.SetActive(true);
                     NavigationCanvas.SetActive(true);
 
@@ -177,19 +177,22 @@ public class WebRequest : MonoBehaviour
         form.AddField("CompletionStatus", taskCompletion.text);
         form.AddField("Deadline", taskDeadline.text);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/addEntryUN.php", form))
+        if (addEventName.text != "" && addEventName.text != "​")
         {
-            yield return www.SendWebRequest();
+            using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/addEntryUN.php", form))
+            {
+                yield return www.SendWebRequest();
 
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
-                Debug.Log(addEventName.text + ": "+ addEventDescription.text); 
-                notificationPanel.SetActive(true);
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log("Form upload complete!");
+                    Debug.Log("FORM: "+ addEventName.text + ": " + addEventDescription.text);
+                    notificationPanel.SetActive(true);
+                }
             }
         }
     }

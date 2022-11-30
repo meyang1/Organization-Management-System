@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class EntryData : MonoBehaviour
@@ -18,6 +19,10 @@ public class EntryData : MonoBehaviour
     }
     public void clearTask()
     {
+        if (entryID.Contains("?$//"))
+        {
+            entryID = entryID.Substring(4);
+        }
         LeanTween.moveX(gameObject, transform.position.x + amountTravel, timeVar).setEaseOutCirc();
         StartCoroutine(setOff(timeVar));
     }
@@ -25,6 +30,26 @@ public class EntryData : MonoBehaviour
     IEnumerator setOff(float waitTime)
     {
         verticalLayoutObj.GetComponent<VerticalLayoutGroup>().enabled = false;
+
+        WWWForm form = new WWWForm();
+        form.AddField("deleteEntryID", entryID); 
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/indexUN.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                // Show results as text 
+
+                //notificationPanel.SetActive(true);
+            }
+        }
+
         yield return new WaitForSeconds(waitTime);
         gameObject.SetActive(false);
         verticalLayoutObj.GetComponent<VerticalLayoutGroup>().enabled = true;
