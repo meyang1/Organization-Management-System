@@ -13,6 +13,7 @@ public class WebRequest : MonoBehaviour
     public TextMeshProUGUI registerPassword;
 
     public GameObject notificationPanel;
+    public GameObject NavigationCanvas;
 
     public TextMeshProUGUI pageInfo;
     private string pageText;
@@ -104,6 +105,7 @@ public class WebRequest : MonoBehaviour
 
                     OpenMenu.SetActive(true);
                     Cam3.SetActive(true);
+                    NavigationCanvas.SetActive(true);
 
                     MoveContentWall(1);
 

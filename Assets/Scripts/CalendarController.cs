@@ -129,7 +129,7 @@ public class CalendarController : MonoBehaviour
         else
         {
             _calendarPanel.SetActive(false);
-            _datePanel.SetActive(false);
+            //_datePanel.SetActive(false);
         }
         //_calendarPanel.transform.position = new Vector3(965, 475, 0);//Input.mousePosition-new Vector3(0,120,0);
     }

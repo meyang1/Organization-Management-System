@@ -435,4 +435,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryID: 
   timeVar: 0
+  amountTravel: 3
   verticalLayoutObj: {fileID: 0}
