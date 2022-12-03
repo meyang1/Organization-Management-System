@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 
 public class EntryData : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class EntryData : MonoBehaviour
     public float timeVar=.6f;
     public float amountTravel=3f;
     public GameObject verticalLayoutObj;
+    public string textDescription;
+    public TextMeshProUGUI cubeTitle;
+    public TextMeshProUGUI cubeDescription;
     // Start is called before the first frame update
     void Start()
     {
