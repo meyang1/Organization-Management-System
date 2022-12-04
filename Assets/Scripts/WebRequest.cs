@@ -115,6 +115,7 @@ public class WebRequest : MonoBehaviour
                     pageInfo.text = www.downloadHandler.text;
                 }
 
+                notificationPanel.SetActive(false);
                 notificationPanel.SetActive(true);
             }
         }
@@ -140,6 +141,7 @@ public class WebRequest : MonoBehaviour
                 Debug.Log(username.text + password.text);
                 // Show results as text 
 
+                notificationPanel.SetActive(false);
                 notificationPanel.SetActive(true);
             }
         }
@@ -191,6 +193,7 @@ public class WebRequest : MonoBehaviour
                 {
                     //Debug.Log("Form upload complete!");
                     Debug.Log("FORM: "+ addEventName.text + ": " + addEventDescription.text);
+                    notificationPanel.SetActive(false);
                     notificationPanel.SetActive(true);
                 }
             }

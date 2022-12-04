@@ -63,6 +63,10 @@ public class ContentWall : MonoBehaviour
         contentTitle.text = "";  
         anim.SetInteger("animState", 0);
     }
+    public void changeAnimState(int animS)
+    {
+        anim.SetInteger("animState", animS);
+    }
 
     public void lowerCam3(float num)
     {
