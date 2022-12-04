@@ -17,6 +17,7 @@ public class cubeManager : MonoBehaviour
     public GameObject titleNotes_Prefab;
     public Scrollbar scroll;
     string textEntries;
+    public bool editModeBoolean = false;
     void Start()
     {
 
@@ -38,6 +39,12 @@ public class cubeManager : MonoBehaviour
         StartCoroutine(GetText1(type));
     }
 
+    public void setEditMode(bool editMode)
+    {
+        editModeBoolean = editMode; 
+        foreach (Transform child in transform)
+            child.GetComponentInChildren<EntryData>().setEditModeNotes(editMode);
+    }
 
     public int countEntries;
     IEnumerator GenerateObjects()
@@ -117,6 +124,11 @@ public class cubeManager : MonoBehaviour
                 countEntries++;
             }
             numberOfParameters++;
+        }
+
+        if (editModeBoolean)
+        {
+            setEditMode(editModeBoolean);
         }
 
 
