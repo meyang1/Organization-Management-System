@@ -8,7 +8,7 @@ public class ContentWall : MonoBehaviour
 {
     public GameObject ContentBox;
     public TextMeshProUGUI contentTitle;
-    public TextMeshProUGUI contents;
+    public Text contents;
     private Animator anim;
     public int currentType; // 1, 2, 3 : Task, Calendar, Notes
     public GameObject NotificationBox;
@@ -69,8 +69,13 @@ public class ContentWall : MonoBehaviour
     public void addEntry()
     {
         StartCoroutine(AddText());
-        
+
     }
+    string textEntries;
+    [SerializeField] private Transform m_ContentContainer;
+    [SerializeField] private GameObject m_ItemPrefab;
+    [SerializeField] private int m_ItemsToGenerate;
+
 
     IEnumerator AddText()
     {
@@ -96,9 +101,8 @@ public class ContentWall : MonoBehaviour
         }
         StartCoroutine(GetText(currentType));
     }
-    IEnumerator GetText(int selectType)
+    IEnumerator GetText(int type1)
     {
-        NotificationBox.SetActive(false);
         WWWForm form = new WWWForm();
         form.AddField("user", webRequest.sessionUsername);
         form.AddField("eventType", currentType);
@@ -113,17 +117,52 @@ public class ContentWall : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
-                contents.text = www.downloadHandler.text;
+                //contents.text = www.downloadHandler.text;
+                textEntries = www.downloadHandler.text;
+                Debug.Log(textEntries);
             }
         }
 
-        //pageText = pageInfo.text;
-        /*Debug.Log("Number of Rows: " + pageText.IndexOf("numberRows:"));
+        string[] separatingStrings = { "&%^&" };
+
+        string[] entries = textEntries.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
 
-        Debug.Log("Text Length: " + pageText.Length);
-        numberRows = int.Parse(pageText.Substring((pageText.IndexOf("numberRows:") + 11), (pageText.Length - 4)));
-        Debug.Log(pageText);*/
+        int numberOfParameters = 3;
+        string tempEntryID = "";
+        string tempEntryName = "";
+        string tempEntryDescription = "";
+        foreach (string entry in entries)
+        {
+            if (numberOfParameters % 3 == 0)
+            {
+                // Entry ID
+                tempEntryID = entry.Trim();
+            }
+            if (numberOfParameters % 3 == 1)
+            {
+                // Name
+                tempEntryName = entry.Trim();
+            }
+            if (numberOfParameters % 3 == 2)
+            {
+                //Description
+                tempEntryDescription = entry.Trim();
+
+                var item_go = Instantiate(m_ItemPrefab);
+                // do something with the instantiated item -- for instance
+                item_go.GetComponentInChildren<TextMeshProUGUI>().text = "<b>" +
+                    tempEntryName + "</b>\n" +
+                    tempEntryDescription;
+                Debug.Log(numberOfParameters + " entry name: " + tempEntryName);
+                //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
+                //parent the item to the content container
+                item_go.transform.SetParent(m_ContentContainer);
+                //reset the item's scale -- this can get munged with UI prefabs
+                item_go.transform.localScale = Vector2.one;
+            }
+            numberOfParameters++;
+        }
 
     }
 
