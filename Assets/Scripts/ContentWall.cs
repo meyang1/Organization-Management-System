@@ -68,11 +68,11 @@ public class ContentWall : MonoBehaviour
         anim.SetInteger("animState", animS);
     }
 
-    public void lowerCam3(float num)
+    /*public void lowerCam3(float num)
     {
         LeanTween.moveY(camv3, num, 0.5f).setEaseOutBack();
     }
-
+    */
     public void addEntry()
     {
         if (!addTitle.text.Equals("​"))

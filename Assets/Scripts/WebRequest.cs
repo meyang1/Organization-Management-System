@@ -26,7 +26,7 @@ public class WebRequest : MonoBehaviour
 
     public void MoveMidCube(float amount)
     {
-        leftCubeAnim.SetInteger("AnimState", 1);
+        //leftCubeAnim.SetInteger("AnimState", 1);
         StartCoroutine(moveCube(amount));
     }
     public Animator leftCubeAnim;
@@ -35,7 +35,7 @@ public class WebRequest : MonoBehaviour
     {
         yield return new WaitForSeconds(0f);
         LeanTween.moveX(MidCube, amount, 2.5f).setEaseOutCirc();
-        leftCubeAnim.SetInteger("AnimState", 0);
+        //leftCubeAnim.SetInteger("AnimState", 0);
     }
 
     public void MoveContentWall(int moveType)
