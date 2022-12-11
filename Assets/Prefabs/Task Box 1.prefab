@@ -411,7 +411,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7277768645748335781}
         m_TargetAssemblyTypeName: EntryData, Assembly-CSharp
-        m_MethodName: clearTask
+        m_MethodName: setUpEditTaskNotes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -437,3 +437,10 @@ MonoBehaviour:
   timeVar: 0.5
   amountTravel: 3
   verticalLayoutObj: {fileID: 0}
+  textDescription: 
+  cubeTitle: {fileID: 0}
+  cubeDescription: {fileID: 0}
+  highestNumPages: 0
+  EditXButtons: {fileID: 0}
+  entryName: 
+  entryDescription: 

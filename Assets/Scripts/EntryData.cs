@@ -14,13 +14,30 @@ public class EntryData : MonoBehaviour
     public string textDescription;
     public TextMeshProUGUI cubeTitle;
     public TextMeshProUGUI cubeDescription;
+    public int highestNumPages = 0;
     public GameObject EditXButtons;
+
+    public string entryName;
+    public string entryDescription;
     // Start is called before the first frame update
     void Start()
     {
         //timeVar = .75f;
         //amountTravel = 4f;
         verticalLayoutObj = GameObject.Find("ContentWallVerticalLayoutGroup");
+    }
+
+    public void getHighestNumPages()
+    {
+        if (cubeTitle.textInfo.pageCount > highestNumPages)
+        {
+            highestNumPages = cubeTitle.textInfo.pageCount;
+        }
+        if (cubeDescription.textInfo.pageCount > highestNumPages)
+        {
+            highestNumPages = cubeDescription.textInfo.pageCount;
+        }
+        Debug.Log(highestNumPages);
     }
 
     public void setEditModeNotes(bool editMode)
@@ -48,7 +65,23 @@ public class EntryData : MonoBehaviour
         cubeManager cubeMNG = GameObject.Find("CubeManager").GetComponent<cubeManager>();
         StartCoroutine(setOffNotes(timeVar, cubeMNG));
     }
+
+    public void setUpEditTaskNotes()
+    {
+        GameObject.Find("EditCanvas").GetComponent<editPanelScript>().editPanel.SetActive(true);
+        GameObject.Find("EditPanelName").GetComponent<TMP_InputField>().text = entryName;
+        GameObject.Find("EditPanelDescription").GetComponent<TMP_InputField>().text = entryDescription;
+        if (entryID.Contains("?$//"))
+        {
+            entryID = entryID.Substring(4);
+
+        }
+        GameObject.Find("EditCanvas").GetComponent<editPanelScript>().entryID = entryID;
+    }
+
     
+
+
     IEnumerator setOffNotes(float waitTime, cubeManager cubeMNG)
     {
 

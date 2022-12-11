@@ -16,8 +16,12 @@ public class cubeManager : MonoBehaviour
     public float multiplier = 1f; // 1 : 0, 2: 1, 3 : 1.3, 4, 1.5, 5 : 1.6, 6 : 1.65, 7 : 1.7, 8 : 1.75, 9: 1.775
     public GameObject titleNotes_Prefab;
     public Scrollbar scroll;
+    public Scrollbar scrollUpDown;
+    public GameObject scrollUpDownObject;
     string textEntries;
     public bool editModeBoolean = false;
+    public int maxNumberPages = 0;
+
     void Start()
     {
 
@@ -26,12 +30,15 @@ public class cubeManager : MonoBehaviour
     Vector3 startPos = new Vector3(-18.6f, 1, -10);
     public void moveObjects(GameObject obj)
     {
-        obj.transform.position = startPos + (new Vector3(2, 0, 2)) * scroll.value * (countEntries-1);
+        obj.transform.position = startPos + (new Vector3(2 * scroll.value * (countEntries - 1), -(maxNumberPages - 1) * scrollUpDown.value, 2 * scroll.value * (countEntries - 1)));
+
     }
 
     public void createObjects()
     {
+        //maxNumberPages = 0;
         StartCoroutine(GenerateObjects());
+
     }
 
     public void Generate(int type)
@@ -41,12 +48,13 @@ public class cubeManager : MonoBehaviour
 
     public void setEditMode(bool editMode)
     {
-        editModeBoolean = editMode; 
+        editModeBoolean = editMode;
         foreach (Transform child in transform)
             child.GetComponentInChildren<EntryData>().setEditModeNotes(editMode);
     }
 
     public int countEntries;
+    public int currentMaxNumberPages;
     IEnumerator GenerateObjects()
     {
         foreach (Transform child in m_ContentContainer)
@@ -111,24 +119,72 @@ public class cubeManager : MonoBehaviour
                 }
                 //item_go.GetComponentInChildren<Text>().text = tempText;
                 item_go.GetComponentInChildren<EntryData>().entryID = tempEntryID;
-                item_go.GetComponentInChildren<EntryData>().textDescription = tempText;
                 item_go.GetComponentInChildren<EntryData>().cubeTitle.text = tempEntryName;
                 item_go.GetComponentInChildren<EntryData>().cubeDescription.text = tempEntryDescription;
 
+                item_go.transform.SetParent(m_ContentContainer);
+                item_go.transform.position += (new Vector3(2, 0, 2)) * countEntries;
+
+                /*yield return new WaitForSeconds(1f);
+                item_go.GetComponentInChildren<EntryData>().getHighestNumPages();
+                currentMaxNumberPages = item_go.GetComponentInChildren<EntryData>().highestNumPages;
+
+                for (int i = 2; i<currentMaxNumberPages; i++)
+                {
+
+                    var item_go2 = Instantiate(m_ItemPrefab, m_ContentContainer);
+                    item_go2.transform.position += (new Vector3(0, 1f, 0)) * (i - 1);
+                    item_go2.GetComponentInChildren<EntryData>().cubeTitle.text = tempEntryName;
+                    item_go2.GetComponentInChildren<EntryData>().cubeDescription.text = tempEntryDescription;
+
+                    item_go2.GetComponentInChildren<EntryData>().cubeTitle.pageToDisplay = i;
+                    item_go2.GetComponentInChildren<EntryData>().cubeDescription.pageToDisplay = i;
+
+                } 
+                */
                 //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
 
-                item_go.transform.SetParent(m_ContentContainer);
-                item_go.transform.position += (new Vector3(2, 0, 2))*countEntries;
                 //reset the item's scale -- this can get munged with UI prefabs
                 //item_go.transform.localScale = Vector2.one;
+
                 countEntries++;
             }
+
             numberOfParameters++;
         }
 
         if (editModeBoolean)
         {
             setEditMode(editModeBoolean);
+        }
+
+        //yield return new WaitForSeconds(.5f);
+        /*maxNumberPages = 0;
+        foreach (Transform child in m_ContentContainer)
+        {
+            child.GetComponentInChildren<EntryData>().getHighestNumPages();
+            currentMaxNumberPages = child.GetComponentInChildren<EntryData>().highestNumPages;
+
+            for(int i=1; i<currentMaxNumberPages; i++)
+            {
+                var item_go = Instantiate(m_ItemPrefab, m_ContentContainer);
+                item_go.transform.position += (new Vector3(0, 1, 0)) * (i-1);
+            }
+            
+            if (child.GetComponentInChildren<EntryData>().highestNumPages > maxNumberPages)
+            {
+                maxNumberPages = child.GetComponentInChildren<EntryData>().highestNumPages;
+
+            }
+            Debug.Log(maxNumberPages);
+        }*/
+        if(maxNumberPages == 1)
+        {
+            scrollUpDownObject.SetActive(false);
+        }
+        else
+        {
+            scrollUpDownObject.SetActive(true);
         }
 
 

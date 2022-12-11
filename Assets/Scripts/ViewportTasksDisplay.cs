@@ -92,6 +92,11 @@ public class ViewportTasksDisplay : MonoBehaviour
                 {
                     tempText = "<b>" + tempEntryName + "</b>";
                 }
+
+                item_go.GetComponentInChildren<EntryData>().entryName = tempEntryName;
+                item_go.GetComponentInChildren<EntryData>().entryDescription = tempEntryDescription;
+
+
                 item_go.GetComponentInChildren<Text>().text = tempText; 
                 item_go.GetComponentInChildren<EntryData>().entryID = tempEntryID;
                 //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
