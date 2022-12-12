@@ -56,7 +56,7 @@ public class ContentWall : MonoBehaviour
             contentTitle.text = "All";
             //viewport.Generate(0); 
         }
-        anim.SetInteger("animState", 1);
+       // anim.SetInteger("animState", 1);
     }
     public void backType()
     {

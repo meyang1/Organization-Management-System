@@ -57,7 +57,7 @@ public class WebRequest : MonoBehaviour
         }
     }
 
-
+    public GameObject CanvasCamera;
     public void SubmitCredentials()
     {
         inputName = username.text;
@@ -76,6 +76,7 @@ public class WebRequest : MonoBehaviour
     public GameObject MidCube;
     public GameObject ActualMenuLight;
     public GameObject OpenMenu;
+    public GameObject LoginCanvas;
     IEnumerator Upload()
     {
         WWWForm form = new WWWForm();
@@ -107,7 +108,10 @@ public class WebRequest : MonoBehaviour
                     Cam3.SetActive(true);
                     NavigationCanvas.SetActive(true);
 
+                    LoginCanvas.SetActive(false);
+
                     MoveContentWall(1);
+                    CanvasCamera.SetActive(true);
 
                 }
                 else
