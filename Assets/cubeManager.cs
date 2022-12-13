@@ -30,7 +30,8 @@ public class cubeManager : MonoBehaviour
     Vector3 startPos = new Vector3(-18.6f, 1, -10);
     public void moveObjects(GameObject obj)
     {
-        obj.transform.position = startPos + (new Vector3(2 * scroll.value * (countEntries - 1), -(maxNumberPages - 1) * scrollUpDown.value, 2 * scroll.value * (countEntries - 1)));
+        if(countEntries>0)
+           obj.transform.position = startPos + (new Vector3(2 * scroll.value * (countEntries - 1), -(maxNumberPages - 1) * scrollUpDown.value, 2 * scroll.value * (countEntries - 1)));
 
     }
 
@@ -184,7 +185,7 @@ public class cubeManager : MonoBehaviour
         }
         else
         {
-            scrollUpDownObject.SetActive(true);
+            //scrollUpDownObject.SetActive(true);
         }
 
 

@@ -15,6 +15,7 @@ public class editPanelScript : MonoBehaviour
     public GameObject editPanel;
     public WebRequest webRequest;
     public ContentWall contentWall;
+    public ViewportTasksDisplay viewportDisplay;
 
 
     public void editTaskNotes()
@@ -50,9 +51,10 @@ public class editPanelScript : MonoBehaviour
                 // Show results as text 
 
                 //notificationPanel.SetActive(true);
-                string textEntries = www.downloadHandler.text;
+                string textEntries = www.downloadHandler.text;  
                 Debug.Log(textEntries);
                 editPanel.SetActive(false);
+                viewportDisplay.Generate(contentWall.currentType);
             }
         }
 

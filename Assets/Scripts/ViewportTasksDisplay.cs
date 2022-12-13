@@ -31,7 +31,7 @@ public class ViewportTasksDisplay : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         WWWForm form = new WWWForm();
         form.AddField("user", webRequest.sessionUsername);
         form.AddField("eventType", type);
