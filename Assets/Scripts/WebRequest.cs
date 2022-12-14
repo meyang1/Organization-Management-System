@@ -146,6 +146,7 @@ public class WebRequest : MonoBehaviour
                 Debug.Log(username.text + password.text);
                 // Show results as text 
 
+                pageInfo.text = www.downloadHandler.text;
                 notificationPanel.SetActive(false);
                 notificationPanel.SetActive(true);
             }

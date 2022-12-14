@@ -59,8 +59,9 @@ public class EntryData : MonoBehaviour
     {
         if (entryID.Contains("?$//"))
         {
-            entryID = entryID.Substring(4);
+            entryID = entryID.Substring(12);
         }
+        Debug.Log(entryID);
         LeanTween.moveX(gameObject, transform.position.x + amountTravel, timeVar).setEaseOutCirc();
         cubeManager cubeMNG = GameObject.Find("CubeManager").GetComponent<cubeManager>();
         StartCoroutine(setOffNotes(timeVar, cubeMNG));

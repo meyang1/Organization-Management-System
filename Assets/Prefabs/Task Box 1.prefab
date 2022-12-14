@@ -444,4 +444,4 @@ MonoBehaviour:
   EditXButtons: {fileID: 0}
   entryName: 
   entryDescription: 
-  EditSelectSFX: {fileID: 8300000, guid: 7256346dc0ca92f4b9f780f6429603aa, type: 3}
+  EditSelectSFX: {fileID: 8300000, guid: 0b3afca6687729f4c9e19ea550a6f726, type: 3}

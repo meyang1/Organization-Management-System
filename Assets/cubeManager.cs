@@ -123,6 +123,10 @@ public class cubeManager : MonoBehaviour
                 item_go.GetComponentInChildren<EntryData>().cubeTitle.text = tempEntryName;
                 item_go.GetComponentInChildren<EntryData>().cubeDescription.text = tempEntryDescription;
 
+
+                item_go.GetComponentInChildren<EntryData>().entryName = tempEntryName;
+                item_go.GetComponentInChildren<EntryData>().entryDescription = tempEntryDescription;
+
                 item_go.transform.SetParent(m_ContentContainer);
                 item_go.transform.position += (new Vector3(2, 0, 2)) * countEntries;
 

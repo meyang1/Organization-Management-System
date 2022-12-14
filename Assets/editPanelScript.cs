@@ -59,4 +59,36 @@ public class editPanelScript : MonoBehaviour
         }
 
     }
+
+    public void deleteEntry()
+    {
+        StartCoroutine(setOffNotes());
+    }
+
+    IEnumerator setOffNotes()
+    {
+
+        WWWForm form = new WWWForm();
+        form.AddField("deleteEntryID", entryID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/indexUN.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                // Show results as text 
+
+                //notificationPanel.SetActive(true);
+            }
+        }
+
+        viewportDisplay.Generate(contentWall.currentType);
+        yield return new WaitForSeconds(0.5f);
+    }
+
 }
