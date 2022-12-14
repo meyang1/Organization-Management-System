@@ -161,13 +161,13 @@ public class WebRequest : MonoBehaviour
     public TextMeshProUGUI addEventName;
     public TextMeshProUGUI addEventDescription;
 
-    public TextMeshProUGUI calendarStart;
+    public Text calendarStart;
     public TextMeshProUGUI calendarEnd;
     public TextMeshProUGUI calendarRepeat;
 
     public TextMeshProUGUI taskPriority;
     public TextMeshProUGUI taskCompletion;
-    public TextMeshProUGUI taskDeadline;
+    public Text taskDeadline;
 
     public int currentEventType;
 
@@ -178,12 +178,15 @@ public class WebRequest : MonoBehaviour
         form.AddField("eventName", addEventName.text);
         form.AddField("eventDescription", addEventDescription.text);
         form.AddField("eventType", currentEventType);
-        form.AddField("startTimeDate", calendarStart.text);
+        form.AddField("startTimeDate", calendarStart.text+" 00:00:00.000");
         form.AddField("endTimeDate", calendarEnd.text);
         form.AddField("repeatStatus", calendarRepeat.text);
         form.AddField("PriorityLevel", taskPriority.text);
         form.AddField("CompletionStatus", taskCompletion.text);
-        form.AddField("Deadline", taskDeadline.text);
+        form.AddField("Deadline", taskDeadline.text+ " 00:00:00.000");
+
+        Debug.Log(calendarStart.text + " 00:00:00.000");
+        //2022-11-17 00:00:00.000
 
         if (addEventName.text != "" && addEventName.text != "​")
         {

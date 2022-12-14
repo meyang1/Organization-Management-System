@@ -90,8 +90,7 @@ public class EntryData : MonoBehaviour
     {
 
         WWWForm form = new WWWForm();
-        form.AddField("deleteEntryID", entryID.Substring(4));
-        Debug.Log(entryID.Substring(4));
+        form.AddField("deleteEntryID", entryID); 
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/indexUN.php", form))
         {
@@ -109,7 +108,7 @@ public class EntryData : MonoBehaviour
             }
         }
          
-        yield return new WaitForSeconds(waitTime*2);
+        yield return new WaitForSeconds(waitTime);
         cubeMNG.createObjects();
         gameObject.SetActive(false); 
     }

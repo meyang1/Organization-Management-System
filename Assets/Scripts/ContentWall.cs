@@ -81,9 +81,12 @@ public class ContentWall : MonoBehaviour
         if (!addTitle.text.Equals("​"))
         {
             StartCoroutine(AddText());
+            
         }
     }
 
+    public Text calendarTextDate;
+    public GameObject datePanel;
     IEnumerator AddText()
     {
         WWWForm form = new WWWForm();
@@ -91,7 +94,14 @@ public class ContentWall : MonoBehaviour
         form.AddField("eventName", addTitle.text);
         form.AddField("eventDescription", addDescription.text);
         form.AddField("eventType", currentType);
-         
+
+            form.AddField("startTimeDate", calendarTextDate.text + " 00:00:00.000");
+            form.AddField("Deadline", calendarTextDate.text + " 00:00:00.000");
+            Debug.Log(calendarTextDate.text + " 00:00:00.000");
+            calendarTextDate.text = "0000-00-00";
+        datePanel.SetActive(false);
+
+
         Debug.Log(webRequest.sessionUsername + addTitle.text +addDescription.text + currentType);
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/addEntryUN.php", form))
         {
@@ -104,7 +114,7 @@ public class ContentWall : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
-                //contents.text = www.downloadHandler.text;
+                Debug.Log(www.downloadHandler.text);
             }
         }
         viewport.Generate(currentType);

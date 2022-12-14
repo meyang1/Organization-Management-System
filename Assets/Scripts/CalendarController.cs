@@ -138,7 +138,7 @@ public class CalendarController : MonoBehaviour
     Text _targetText;
     public void OnDateItemClick(string day)
     {
-        _targetText.text = _monthNumText.text + "-" + day + "-" + _yearNumText.text;
+        _targetText.text = _yearNumText.text + "-" + _monthNumText.text + "-" + day;
         _datePanel.SetActive(false);
         _datePanel.SetActive(true);
 //        _target.text = _yearNumText.text + " Year " + _monthNumText.text + " Month " + day+" Day ";
