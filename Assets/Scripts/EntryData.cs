@@ -66,11 +66,14 @@ public class EntryData : MonoBehaviour
         StartCoroutine(setOffNotes(timeVar, cubeMNG));
     }
 
+    public AudioClip EditSelectSFX;
     public void setUpEditTaskNotes()
     {
         GameObject.Find("EditCanvas").GetComponent<editPanelScript>().editPanel.SetActive(true);
         GameObject.Find("EditPanelName").GetComponent<TMP_InputField>().text = entryName;
         GameObject.Find("EditPanelDescription").GetComponent<TMP_InputField>().text = entryDescription;
+        GameObject.Find("SFXPlayer").GetComponent<AudioSource>().clip = EditSelectSFX;
+        GameObject.Find("SFXPlayer").GetComponent<AudioSource>().Play();
         if (entryID.Contains("?$//"))
         {
             entryID = entryID.Substring(4);

@@ -76,6 +76,9 @@ public class WebRequest : MonoBehaviour
     public GameObject MidCube;
     public GameObject ActualMenuLight;
     public GameObject OpenMenu;
+    public AudioClip livingRoomMusic;
+    public AudioClip contentMusic;
+    public AudioSource audioPlayer;
     IEnumerator Upload()
     {
         WWWForm form = new WWWForm();
@@ -108,6 +111,8 @@ public class WebRequest : MonoBehaviour
                     NavigationCanvas.SetActive(true);
 
                     MoveContentWall(1);
+                    audioPlayer.clip = contentMusic;
+                    audioPlayer.Play();
 
                 }
                 else

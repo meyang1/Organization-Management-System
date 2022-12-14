@@ -27,10 +27,13 @@ public class ContentWall : MonoBehaviour
         anim = this.GetComponent<Animator>();
     }
 
+    public AudioClip changeContentSFX;
     public void changeType(int type)
     {
         currentType = type;
         NotificationBox.SetActive(false);
+        GameObject.Find("SFXPlayer").GetComponent<AudioSource>().clip = changeContentSFX;
+        GameObject.Find("SFXPlayer").GetComponent<AudioSource>().Play();
         if (type == 1)
         {
             //tasks
