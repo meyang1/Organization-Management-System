@@ -24,7 +24,7 @@ public class EntryData : MonoBehaviour
     {
         //timeVar = .75f;
         //amountTravel = 4f;
-        verticalLayoutObj = GameObject.Find("ContentWallVerticalLayoutGroup");
+        verticalLayoutObj = GameObject.Find("ContentWallVerticalLayoutGroup"); 
     }
 
     public void getHighestNumPages()
@@ -59,9 +59,9 @@ public class EntryData : MonoBehaviour
     {
         if (entryID.Contains("?$//"))
         {
-            entryID = entryID.Substring(12);
+            entryID = entryID.Substring(4);
         }
-        Debug.Log(entryID);
+        //Debug.Log(entryID);
         LeanTween.moveX(gameObject, transform.position.x + amountTravel, timeVar).setEaseOutCirc();
         cubeManager cubeMNG = GameObject.Find("CubeManager").GetComponent<cubeManager>();
         StartCoroutine(setOffNotes(timeVar, cubeMNG));
@@ -90,7 +90,8 @@ public class EntryData : MonoBehaviour
     {
 
         WWWForm form = new WWWForm();
-        form.AddField("deleteEntryID", entryID);
+        form.AddField("deleteEntryID", entryID.Substring(4));
+        Debug.Log(entryID.Substring(4));
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/indexUN.php", form))
         {
@@ -108,7 +109,7 @@ public class EntryData : MonoBehaviour
             }
         }
          
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime*2);
         cubeMNG.createObjects();
         gameObject.SetActive(false); 
     }
