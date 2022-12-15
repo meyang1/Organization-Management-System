@@ -15,12 +15,14 @@ public class ViewportTasksDisplay : MonoBehaviour
     public GameObject titleCalendar_Prefab;
     public GameObject titleNotes_Prefab;
     string textEntries;
+    public GameObject blockCanvas;
     void Start()
     {
 
     }
     public void Generate(int type)
     {
+        blockCanvas.SetActive(true);
         StartCoroutine(GetText1(type));
     }
 
@@ -42,6 +44,8 @@ public class ViewportTasksDisplay : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(www.error);
+
+                blockCanvas.SetActive(false);
             }
             else
             {
@@ -49,6 +53,8 @@ public class ViewportTasksDisplay : MonoBehaviour
                 //contents.text = www.downloadHandler.text;
                 textEntries = www.downloadHandler.text;
                 Debug.Log(textEntries);
+
+                blockCanvas.SetActive(false);
             }
         }
 

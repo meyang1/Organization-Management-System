@@ -13,6 +13,7 @@ public class ContentWall : MonoBehaviour
     public int currentType; // 1, 2, 3 : Task, Calendar, Notes
     public GameObject NotificationBox;
     public GameObject camv3;
+    public GameObject blockCanvas;
 
 
     public TextMeshProUGUI addTitle;
@@ -24,13 +25,13 @@ public class ContentWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = this.GetComponent<Animator>();
+        anim = this.GetComponent<Animator>(); 
     }
 
     public AudioClip changeContentSFX;
     public void changeType(int type)
-    {
-        currentType = type;
+    { 
+           currentType = type;
         NotificationBox.SetActive(false);
         GameObject.Find("SFXPlayer").GetComponent<AudioSource>().clip = changeContentSFX;
         GameObject.Find("SFXPlayer").GetComponent<AudioSource>().Play();

@@ -17,6 +17,7 @@ public class WebRequest : MonoBehaviour
 
     public TextMeshProUGUI pageInfo;
     private string pageText;
+    public GameObject blockCanvas;
     string inputName, inputPassword;
 
     public string sessionUsername;
@@ -62,6 +63,7 @@ public class WebRequest : MonoBehaviour
     {
         inputName = username.text;
         inputPassword = password.text;
+        blockCanvas.SetActive(true);
         StartCoroutine(Upload());
     }
     public void GetAllEvents()
@@ -70,6 +72,7 @@ public class WebRequest : MonoBehaviour
     }
     public void Register()
     {
+        blockCanvas.SetActive(true);
         StartCoroutine(RegisterAccount());
     }
     public GameObject ContentWall;
@@ -93,6 +96,7 @@ public class WebRequest : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(www.error);
+                blockCanvas.SetActive(false);
             }
             else
             {
@@ -122,6 +126,7 @@ public class WebRequest : MonoBehaviour
 
                 notificationPanel.SetActive(false);
                 notificationPanel.SetActive(true);
+                blockCanvas.SetActive(false);
             }
         }
     }
@@ -139,6 +144,8 @@ public class WebRequest : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(www.error);
+
+                blockCanvas.SetActive(false);
             }
             else
             {
@@ -147,6 +154,8 @@ public class WebRequest : MonoBehaviour
                 // Show results as text 
 
                 pageInfo.text = www.downloadHandler.text;
+
+                blockCanvas.SetActive(false);
                 notificationPanel.SetActive(false);
                 notificationPanel.SetActive(true);
             }
