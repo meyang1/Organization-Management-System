@@ -57,9 +57,10 @@ public class ViewportTasksDisplay : MonoBehaviour
         string[] entries = textEntries.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
 
-        int numberOfParameters = 3;
+        int numberOfParameters = 4;
         string tempEntryID = "";
         string tempEntryName = "";
+        string tempEntryDate = "";
 
 
         if (type == 1) { var title_go = Instantiate(titleTasks_Prefab, m_ContentContainer); }
@@ -69,17 +70,21 @@ public class ViewportTasksDisplay : MonoBehaviour
         string tempEntryDescription = "";
         foreach (string entry in entries)
         { 
-            if (numberOfParameters % 3 == 0)
+            if (numberOfParameters % 4 == 0)
             {
                 // Entry ID
                 tempEntryID = entry.Trim();
             }
-            if (numberOfParameters % 3 == 1)
+            if (numberOfParameters % 4 == 1)
             {
                 // Name
                 tempEntryName = entry.Trim();
             }
-            if (numberOfParameters % 3 == 2)
+            if (numberOfParameters % 4 == 2)
+            {
+                tempEntryDate = entry.Trim();
+            }
+            if (numberOfParameters % 4 == 3)
             {
                 //Description
                 tempEntryDescription = entry.Trim();
@@ -95,6 +100,7 @@ public class ViewportTasksDisplay : MonoBehaviour
 
                 item_go.GetComponentInChildren<EntryData>().entryName = tempEntryName;
                 item_go.GetComponentInChildren<EntryData>().entryDescription = tempEntryDescription;
+                item_go.GetComponentInChildren<EntryData>().entryDate = tempEntryDate;
 
 
                 item_go.GetComponentInChildren<Text>().text = tempText; 
@@ -105,6 +111,7 @@ public class ViewportTasksDisplay : MonoBehaviour
                 //reset the item's scale -- this can get munged with UI prefabs
                 item_go.transform.localScale = Vector2.one;
             }
+
             numberOfParameters++;
         }
 

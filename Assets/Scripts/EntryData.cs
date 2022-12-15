@@ -19,6 +19,7 @@ public class EntryData : MonoBehaviour
 
     public string entryName;
     public string entryDescription;
+    public string entryDate;
     // Start is called before the first frame update
     void Start()
     {
