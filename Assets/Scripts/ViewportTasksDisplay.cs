@@ -24,7 +24,7 @@ public class ViewportTasksDisplay : MonoBehaviour
         StartCoroutine(GetText1(type));
     }
 
-
+    public string currentYear="";
     IEnumerator GetText1(int type)
     {
         foreach (Transform child in m_ContentContainer)
@@ -68,6 +68,8 @@ public class ViewportTasksDisplay : MonoBehaviour
         if (type == 3) { var title_go = Instantiate(titleNotes_Prefab, m_ContentContainer); }
 
         string tempEntryDescription = "";
+        //private DateTime _dateTime = DateTime.Now;
+        
         foreach (string entry in entries)
         { 
             if (numberOfParameters % 4 == 0)
@@ -101,6 +103,15 @@ public class ViewportTasksDisplay : MonoBehaviour
                 item_go.GetComponentInChildren<EntryData>().entryName = tempEntryName;
                 item_go.GetComponentInChildren<EntryData>().entryDescription = tempEntryDescription;
                 item_go.GetComponentInChildren<EntryData>().entryDate = tempEntryDate;
+                if (!tempEntryDate.Equals("9999-12-31"))
+                {
+                    item_go.GetComponentInChildren<EntryData>().dateText.text = tempEntryDate.Substring(5);
+                    if (!tempEntryDate.Substring(0, 4).Equals(currentYear))
+                    {
+                        item_go.GetComponentInChildren<EntryData>().yearText.text = "("+tempEntryDate.Substring(0, 4)+")";
+
+                    }
+                }
 
 
                 item_go.GetComponentInChildren<Text>().text = tempText; 

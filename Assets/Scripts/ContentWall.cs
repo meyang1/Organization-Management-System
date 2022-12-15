@@ -94,11 +94,9 @@ public class ContentWall : MonoBehaviour
         form.AddField("eventName", addTitle.text);
         form.AddField("eventDescription", addDescription.text);
         form.AddField("eventType", currentType);
-
-            form.AddField("startTimeDate", calendarTextDate.text + " 00:00:00.000");
-            form.AddField("Deadline", calendarTextDate.text + " 00:00:00.000");
-            Debug.Log(calendarTextDate.text + " 00:00:00.000");
-            calendarTextDate.text = "0000-00-00";
+            form.AddField("eventDate", calendarTextDate.text);
+            Debug.Log(calendarTextDate.text);
+            calendarTextDate.text = "9999-12-31";
         datePanel.SetActive(false);
 
 

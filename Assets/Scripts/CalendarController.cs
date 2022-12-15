@@ -19,6 +19,7 @@ public class CalendarController : MonoBehaviour
 
     private DateTime _dateTime;
     public static CalendarController _calendarInstance;
+    public ViewportTasksDisplay viewportTasksDisplay;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class CalendarController : MonoBehaviour
         }
 
         _dateTime = DateTime.Now;
+        viewportTasksDisplay.currentYear=_dateTime.Year.ToString();
+
 
         CreateCalendar();
 
@@ -143,6 +146,6 @@ public class CalendarController : MonoBehaviour
         _datePanel.SetActive(true);
 //        _target.text = _yearNumText.text + " Year " + _monthNumText.text + " Month " + day+" Day ";
         //_targetText.text = _yearNumText.text + " Year " + _monthNumText.text + " Month " + day + " Day ";
-        //_calendarPanel.SetActive(false);
+        _calendarPanel.SetActive(false);
     }
 }

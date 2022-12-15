@@ -20,6 +20,8 @@ public class EntryData : MonoBehaviour
     public string entryName;
     public string entryDescription;
     public string entryDate;
+    public Text dateText;
+    public Text yearText;
     // Start is called before the first frame update
     void Start()
     {
