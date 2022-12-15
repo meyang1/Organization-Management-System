@@ -16,6 +16,9 @@ public class editPanelScript : MonoBehaviour
     public WebRequest webRequest;
     public ContentWall contentWall;
     public ViewportTasksDisplay viewportDisplay;
+    public Text editDateText;
+    public GameObject calendarCanvas1;
+    public GameObject datePanel;
 
 
     public void editTaskNotes()
@@ -36,6 +39,9 @@ public class editPanelScript : MonoBehaviour
         form.AddField("editName", editTextName.text);
         form.AddField("editDescription", editTextDescription.text);
         form.AddField("editType", contentWall.currentType);
+        form.AddField("editDate", editDateText.text);
+        editDateText.text = "9999-12-31";
+        datePanel.SetActive(false);
 
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.max.redhawks.us/editEntryUN.php", form))

@@ -75,6 +75,16 @@ public class EntryData : MonoBehaviour
     {
         GameObject.Find("EditCanvas").GetComponent<editPanelScript>().editPanel.SetActive(true);
         GameObject.Find("EditPanelName").GetComponent<TMP_InputField>().text = entryName;
+        if (!entryDate.Equals("9999-12-31"))
+        {
+            GameObject.Find("EditCanvas").GetComponent<editPanelScript>().calendarCanvas1.SetActive(true);
+            GameObject.Find("EditCanvas").GetComponent<editPanelScript>().datePanel.SetActive(true);
+            GameObject.Find("CalendarTextDate").GetComponent<Text>().text = entryDate;
+        }
+        else
+        {
+            //GameObject.Find("CalendarTextDate").GetComponent<Text>().text = " ";
+        }
         GameObject.Find("EditPanelDescription").GetComponent<TMP_InputField>().text = entryDescription;
         GameObject.Find("SFXPlayer").GetComponent<AudioSource>().clip = EditSelectSFX;
         GameObject.Find("SFXPlayer").GetComponent<AudioSource>().Play();
